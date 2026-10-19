@@ -12,38 +12,114 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	</head>
 	<body>
 		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!!!!!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+		<main class="homepage">
+			<section class="hero">
+				<p class="eyebrow">Week 5 project status</p>
+				<h1>Project Studio</h1>
+				<p class="lead">
+					A polished digital project page covering the core goals, progress, and presentation-ready
+					summary for this week’s milestone.
+				</p>
+				<div class="cta-row">
+					<a class="button primary" href="/about">Project Overview</a>
+					<a class="button secondary" href="/blog">View Blog</a>
+				</div>
+			</section>
+
+			<section class="grid">
+				<article class="card">
+					<h2>Goal</h2>
+					<p>Build a clear, professional project narrative with a usable website and slide-ready summary.</p>
+				</article>
+				<article class="card">
+					<h2>Progress</h2>
+					<p>Project structure, branding, navigation, and presentation content have been prepared for Week 5.</p>
+				</article>
+				<article class="card">
+					<h2>Tools</h2>
+					<p>Astro is used to create a fast, modern front end that supports both content and presentation.</p>
+				</article>
+			</section>
+
+			<section class="summary">
+				<h2>What this milestone delivers</h2>
+				<ul>
+					<li>Professional homepage and branded project identity</li>
+					<li>Week 5 slide deck page with all key talking points</li>
+					<li>Clear project overview for presentation and documentation</li>
+					<li>Ready-to-use structure for future expansion</li>
+				</ul>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.homepage {
+		padding-top: 2rem;
+	}
+	.hero {
+		padding: 2rem 0 1rem;
+	}
+	.eyebrow {
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: #4f46e5;
+		margin-bottom: 1rem;
+	}
+	.lead {
+		font-size: 1.2rem;
+		max-width: 42rem;
+	}
+	.cta-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-top: 2rem;
+	}
+	.button {
+		display: inline-block;
+		padding: 0.85rem 1.4rem;
+		border-radius: 999px;
+		text-decoration: none;
+		font-weight: 700;
+		transition: transform 0.2s ease;
+	}
+	.button:hover {
+		transform: translateY(-1px);
+	}
+	.button.primary {
+		background: linear-gradient(135deg, #4f46e5, #7c3aed);
+		color: #fff;
+	}
+	.button.secondary {
+		background: #eef2ff;
+		color: #1f2937;
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1.25rem;
+		margin: 2.5rem 0;
+	}
+	.card {
+		background: rgba(255, 255, 255, 0.75);
+		border: 1px solid rgba(79, 70, 229, 0.12);
+		border-radius: 18px;
+		padding: 1.5rem;
+		box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+	}
+	.summary {
+		background: linear-gradient(135deg, #f8fafc, #eef2ff);
+		border-radius: 20px;
+		padding: 1.5rem 1.75rem;
+		margin-top: 1rem;
+	}
+	.summary ul {
+		margin: 1rem 0 0;
+		padding-left: 1.2rem;
+	}
+</style>
