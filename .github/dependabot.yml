@@ -1,0 +1,7 @@
+version: 2
+updates:
+  # Maintain open source dependencies for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
