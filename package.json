@@ -18,6 +18,7 @@
     "@astrojs/node": "^11.1.9",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
+    "aws-cdk": "^2.1145.0",
     "astro": "^7.3.2",
     "sharp": "^0.35.0"
   },
@@ -25,6 +26,7 @@
     "esbuild": true
   },
   "devDependencies": {
+    "aws-cdk": "^2.1146.0",
     "eslint": "^10.13.0",
     "eslint-plugin-astro": "^3.2.1",
     "vitest": "^5.0.5"
