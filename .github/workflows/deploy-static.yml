@@ -34,4 +34,5 @@ jobs:
         working-directory: ./cdk
         run: |
           npm ci
-          npx cdk deploy --app "npx --no-install ts-node bin/cdk.ts" --require-approval never
+          npm run build
+          npx cdk deploy --app "node bin/cdk.js" --require-approval never
