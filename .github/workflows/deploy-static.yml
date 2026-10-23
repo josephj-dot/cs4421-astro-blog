@@ -32,4 +32,6 @@ jobs:
 
       - name: Deploy Infrastructure & Assets with AWS CDK
         working-directory: ./cdk
-        run: npx cdk deploy --app "npx ts-node bin/cdk.ts" --require-approval never
+        run: |
+          npm ci
+          npx cdk deploy --app "npx ts-node bin/cdk.ts" --require-approval never
