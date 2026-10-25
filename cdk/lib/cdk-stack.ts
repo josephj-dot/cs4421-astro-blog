@@ -15,7 +15,7 @@ export class StaticSiteStack extends cdk.Stack {
       defaultRootObject: 'index.html',
     });
     new s3deploy.BucketDeployment(this, 'DeploySite', {
-      sources: [s3deploy.Source.asset('./../dist')],
+      sources: [s3deploy.Source.asset('./../dist/client')],
       destinationBucket: siteBucket,
       distribution,
       distributionPaths: ['/*'], 
