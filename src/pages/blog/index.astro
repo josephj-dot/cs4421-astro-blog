@@ -12,9 +12,105 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 	</head>
 	<body>
 		<Header />
-		<main>
-			<h1>To be created</h1>
+		<main class="blog-page">
+			<h1>Choose a blog</h1>
+			<div class="blog-options" aria-label="Choose a blog">
+				<button class="blog-option dublin" type="button" data-message="Dublin blog goes here" aria-pressed="false">
+					<span>Dublin</span>
+				</button>
+				<button class="blog-option harps" type="button" data-message="Skerries Harps blog goes here" aria-pressed="false">
+					<span>Skerries Harps</span>
+				</button>
+			</div>
+			<p class="blog-message" aria-live="polite" aria-atomic="true"></p>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<script>
+	const options = document.querySelectorAll<HTMLButtonElement>('.blog-option');
+	const message = document.querySelector<HTMLElement>('.blog-message');
+
+	options.forEach((option) => {
+		option.addEventListener('click', () => {
+			options.forEach((item) => item.setAttribute('aria-pressed', String(item === option)));
+			if (message) message.textContent = option.dataset.message ?? '';
+		});
+	});
+</script>
+
+<style>
+	.blog-page {
+		width: min(1100px, calc(100% - 2rem));
+		padding-top: 2.5rem;
+	}
+	.blog-page h1 {
+		font-size: 2rem;
+		margin-bottom: 1.5rem;
+	}
+	.blog-options {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+	}
+	.blog-option {
+		position: relative;
+		display: grid;
+		place-items: center;
+		min-height: 280px;
+		padding: 1.5rem;
+		border: 0;
+		border-radius: 6px;
+		cursor: pointer;
+		font: inherit;
+		transition: transform 160ms ease, box-shadow 160ms ease;
+	}
+	.blog-option span {
+		padding: 0.5rem 1rem;
+		background: rgba(255, 255, 255, 0.94);
+		color: #082c55;
+		font-size: 1.75rem;
+		font-weight: 700;
+		text-align: center;
+	}
+	.dublin {
+		background: linear-gradient(to right, #003366 0 50%, #87ceeb 50% 100%);
+	}
+	.harps {
+		background: linear-gradient(to right, #003366 0 50%, #fff 50% 100%);
+		border: 1px solid #d2d9e1;
+	}
+	.blog-option:hover,
+	.blog-option[aria-pressed='true'] {
+		transform: translateY(-3px);
+		box-shadow: 0 12px 28px rgba(8, 44, 85, 0.2);
+	}
+	.blog-option:focus-visible {
+		outline: 3px solid #111;
+		outline-offset: 4px;
+	}
+	.blog-message {
+		min-height: 1.7em;
+		margin: 1.5rem 0 0;
+		font-size: 1.25rem;
+		font-weight: 700;
+		text-align: center;
+	}
+	@media (max-width: 640px) {
+		.blog-page {
+			padding-top: 1.5rem;
+		}
+		.blog-options {
+			grid-template-columns: 1fr;
+		}
+		.blog-option {
+			min-height: 210px;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.blog-option {
+			transition: none;
+		}
+	}
+</style>
