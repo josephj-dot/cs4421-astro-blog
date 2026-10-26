@@ -1,42 +1,20 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="About the Project"
-	description="Project overview for Week 5"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		This project is focused on building a clear, professional digital presence for a Week 5 academic
-		deliverable. The goal is to combine strong project planning with a polished presentation so the
-		work is easy to explain, easy to follow, and ready to present.
-	</p>
-
-	<p>
-		The core objective is not just to create a website, but to organize the work into a coherent story:
-		what the project is, why it matters, what was completed, which tools were used, and what the next
-		steps look like. By structuring the work this way, it becomes easier to show progress and communicate
-		technical decisions clearly.
-	</p>
-
-	<p>
-		The site uses Astro as the main framework, giving the project a modern structure with fast page
-		generation and a clean content-first workflow. It also demonstrates how a project can evolve from a
-		starter template into a finished presentation-ready digital portfolio.
-	</p>
-
-	<p>
-		This phase highlights the importance of consistency, organization, and stakeholder communication.
-		On a practical level, it means keeping the project readable, documenting milestones, and ensuring
-		that design choices support the message rather than distract from it.
-	</p>
-
-	<p>
-		The Week 5 milestone is about turning technical effort into a strong narrative. The end result is a
-		project that is not only functional, but also clearly demonstrates planning, execution, and forward
-		momentum.
-	</p>
-</Layout>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`About | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>To be created</h1>
+		</main>
+		<Footer />
+	</body>
+</html>
