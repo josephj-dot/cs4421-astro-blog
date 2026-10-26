@@ -15,14 +15,51 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 		<main class="blog-page">
 			<h1>Choose a blog</h1>
 			<div class="blog-options" aria-label="Choose a blog">
-				<button class="blog-option dublin" type="button" data-message="Dublin blog goes here" aria-pressed="false">
+				<button class="blog-option dublin" type="button" data-blog="dublin" aria-controls="dublin-blog" aria-pressed="false">
 					<span>Dublin</span>
 				</button>
-				<button class="blog-option harps" type="button" data-message="Skerries Harps blog goes here" aria-pressed="false">
+				<button class="blog-option harps" type="button" data-blog="harps" aria-controls="harps-blog" aria-pressed="false">
 					<span>Skerries Harps</span>
 				</button>
 			</div>
-			<p class="blog-message" aria-live="polite" aria-atomic="true"></p>
+			<section class="blog-content" aria-live="polite" aria-atomic="true">
+				<article id="dublin-blog" class="blog-article dublin-article" hidden>
+					<div class="article-copy">
+						<p class="article-kicker">County pride · Gaelic games</p>
+						<h2>The Boys in Blue: The Legacy of Dublin GAA</h2>
+						<p>Dublin GAA isn't just a sports team it’s a whole lifestyle. Whether you're playing for your local club on a freezing Tuesday night or cramming onto a packed bus heading up to Croke Park, the team is part of the counties passion. It’s all about unbelievable talent, hard work, insanely loud supporters, and that relentless drive to win every single time they step onto the pitch.</p>
+
+						<h3>Chasing History on the Football Pitch</h3>
+						<p>When it comes to Gaelic football, Dublin is simply built different. Over the decades, we've consistently run the show, stacking up Leinster titles and All-Ireland championships like it's nobody's business. The modern squad. They completely changed the game with elite fitness, next-level tactical IQ, and skills that honestly leave you speechless when you're watching from the seats of Croke Park.</p>
+
+						<h3>The Untouchable 6 in a Row</h3>
+						<p>Look, nothing tops the absolute madness of the historic 6 in a row. Winning just one All Ireland is the ultimate achievement, but doing it six years straight between 2015 and 2020? That was pure history in the making. Led by Jim Gavin and then Dessie Farrell, this team redefined what perfection looks like in the GAA. The depth, the mentality, the pure clutch plays, we were literally watching legends week in and week out.</p>
+
+						<h3>Representing the Hurling Pride</h3>
+						<p>And while football gets a lot of the spotlight, you can't sleep on Dublin hurling. It’s all about heart, tradition, and refusing to back down. Sure, we have historic titles in the cabinet, but snapping that 52-year drought to win the Leinster Championship in 2013 (plus the 2011 National League) proved we're a true dual-county powerhouse. Taking it up to the traditional hurling heavyweights takes serious grit, and our lads bring it every single time.</p>
+
+						<h3>The Bottom Line</h3>
+						<p>At the end of the day, Dublin GAA is way more than just a trophy cabinet. It’s community, it’s local pride, and it’s about sharing those unforgettable summer memories at Croke Park with your mates. From the magic of the 6 in a row to the ongoing fight in both codes, the Boys in Blue will always be iconic. Up the Dubs! 💙🤍</p>
+					</div>
+				</article>
+				<article id="harps-blog" class="blog-article harps-article" hidden>
+					<div class="article-copy">
+						<h2>Skerries Harps</h2>
+						<p>Skerries Harps is a lot more personal to me than the county team ever could be. I've been playing here since I was four years old.</p>
+
+						<p>As a student balancing assignments, exams, and everything else going on, heading down to the pitch on a weekday evening is always a great way to clear my head. I’ve worn the blue and white jersey for as long as I can remember, from freezing Saturday morning matches as a kid to late-evening adult games under the lights. It isn't just the club I play for; it’s where I grew up, where my best mates are, and where some of my favorite memories have been made.</p>
+
+						<h3>Football in the Blue &amp; White</h3>
+						<p>We might not be a super club with endless headlines, but the commitment in our football ranks runs deep. Winning here isn't about collecting dozens of trophies; it’s about grinding out tough league matches on rainy evenings, pushing for promotion, and leaving everything on the pitch. Over the years, our squads have worked through various championship and league tiers to earn respect in Dublin football. We haven’t always won the big titles, but we’ve always put in the work, kept fit, and had a laugh doing it.</p>
+
+						<h3>The Hurling Journey</h3>
+						<p>I’ve always preferred playing both Gaelic sports, which means I’ve been involved with our hurling teams my whole life as well. Hurling in North Dublin is tough, but playing for the Harps has always been worth it. We’ve had our fair share of ups and downs, but the effort to keep hurling thriving in town is solid. Over the years, our squads have quietly put in the work, building up from nursery games to competitive adult leagues and junior championship runs. Celebrating a hard-earned win with the team after a tough match on the pitch is a feeling that’s hard to beat.</p>
+
+						<h3>Local Heroes &amp; Legendary Moments</h3>
+						<p>Even as a local club, we’ve had moments that made the whole town proud. Seeing players from our own pitches go on to wear the Dublin jersey at the highest level, like Bryan Cullen captaining Dublin to lift the Sam Maguire in 2011 who is now a coach for one of the minor teams, or Lyndsey Davey dominating the ladies' game for years, gives everyone in the club something genuine to look up to.</p>
+					</div>
+				</article>
+			</section>
 		</main>
 		<Footer />
 	</body>
@@ -30,12 +67,15 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
 <script>
 	const options = document.querySelectorAll<HTMLButtonElement>('.blog-option');
-	const message = document.querySelector<HTMLElement>('.blog-message');
+	const blogViews = document.querySelectorAll<HTMLElement>('.blog-content [id]');
 
 	options.forEach((option) => {
 		option.addEventListener('click', () => {
+			const selectedBlog = option.dataset.blog;
 			options.forEach((item) => item.setAttribute('aria-pressed', String(item === option)));
-			if (message) message.textContent = option.dataset.message ?? '';
+			blogViews.forEach((view) => {
+				view.hidden = view.id !== `${selectedBlog}-blog`;
+			});
 		});
 	});
 </script>
@@ -91,11 +131,46 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 		outline-offset: 4px;
 	}
 	.blog-message {
-		min-height: 1.7em;
-		margin: 1.5rem 0 0;
+		margin: 0;
 		font-size: 1.25rem;
 		font-weight: 700;
 		text-align: center;
+	}
+	.blog-content {
+		margin-top: 2rem;
+	}
+	.blog-article {
+		max-width: 850px;
+		margin: 0 auto;
+		padding: clamp(1.5rem, 4vw, 3.5rem);
+		background: #fff;
+		border-top: 6px solid #003366;
+		box-shadow: 0 12px 36px rgba(8, 44, 85, 0.1);
+		overflow: hidden;
+	}
+	.article-copy {
+		max-width: 62ch;
+	}
+	.article-kicker {
+		margin: 0 0 0.75rem;
+		color: #17628e;
+		font-size: 0.78rem;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+	.article-copy h2 {
+		max-width: 18ch;
+		margin-bottom: 1.25rem;
+		color: #003366;
+		font-size: clamp(2rem, 5vw, 3.1rem);
+	}
+	.article-copy h3 {
+		margin: 2rem 0 0.5rem;
+		color: #003366;
+		font-size: 1.5rem;
+	}
+	.article-copy p {
+		margin: 0 0 1rem;
 	}
 	@media (max-width: 640px) {
 		.blog-page {
