@@ -1,8 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import DublinCrest from '../assets/Dublin_GAA_crest.svg.webp';
+import SkerriesHarpsLogo from '../assets/Skerries_Harps_logo.png';
 ---
 
 <!doctype html>
@@ -12,9 +15,89 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	</head>
 	<body>
 		<Header />
-		<main>
-			<h1>To be created</h1>
+		<main class="home-page">
+			<section class="welcome" aria-labelledby="welcome-title">
+				<p class="eyebrow">Dublin GAA · Skerries Harps</p>
+				<h1 id="welcome-title">Welcome</h1>
+				<div class="emblems" aria-label="Dublin and Skerries Harps emblems">
+					<figure class="emblem">
+						<Image
+							src={DublinCrest}
+							class="dublin-crest"
+							alt="County Dublin coat of arms featuring Dublin Castle"
+						/>
+						<figcaption>Dublin</figcaption>
+					</figure>
+					<figure class="emblem">
+						<Image
+							src={SkerriesHarpsLogo}
+							class="harps-logo"
+							alt="Skerries Harps club logo"
+						/>
+						<figcaption>Skerries Harps</figcaption>
+					</figure>
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.home-page {
+		width: min(980px, calc(100% - 2rem));
+		padding-top: clamp(2.5rem, 7vw, 5rem);
+		padding-bottom: 3rem;
+	}
+	.welcome {
+		text-align: center;
+	}
+	.eyebrow {
+		margin: 0 0 0.75rem;
+		color: #17628e;
+		font-size: 0.8rem;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+	.welcome h1 {
+		color: #003366;
+		font-size: clamp(2.5rem, 6vw, 4rem);
+	}
+	.emblems {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		align-items: center;
+		gap: clamp(1.5rem, 6vw, 5rem);
+		max-width: 660px;
+		margin: 2.5rem auto 0;
+	}
+	.emblem {
+		display: grid;
+		justify-items: center;
+		gap: 1rem;
+		margin: 0;
+	}
+	.dublin-crest,
+	.harps-logo {
+		width: min(100%, 240px);
+		height: 220px;
+		object-fit: contain;
+	}
+	figcaption {
+		color: #003366;
+		font-size: 1.2rem;
+		font-weight: 700;
+	}
+	@media (max-width: 560px) {
+		.emblems {
+			gap: 1rem;
+		}
+		.dublin-crest,
+		.harps-logo {
+			height: 170px;
+		}
+		figcaption {
+			font-size: 1rem;
+		}
+	}
+</style>
