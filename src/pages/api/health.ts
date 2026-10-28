@@ -3,10 +3,10 @@ import type { APIRoute } from 'astro';
 export const GET: APIRoute = () => {
     return new Response(
         JSON.stringify({
-            status: 'ok',
-            uptime: process.uptime(),
+            status: 'error',
+            message: 'Intentional 500 error for rollback drill',
             timestamp: new Date().toISOString(),
         }),
-        { status: 200, headers: { 'Content-Type': 'application/json' } },
+        { status: 500, headers: { 'Content-Type': 'application/json' } },
     );
 };
