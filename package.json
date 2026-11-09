@@ -29,6 +29,6 @@
     "aws-cdk": "^2.1146.0",
     "eslint": "^10.13.0",
     "eslint-plugin-astro": "^3.2.1",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   }
 }
